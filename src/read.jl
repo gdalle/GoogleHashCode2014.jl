@@ -4,8 +4,8 @@
 Read the text file available at <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt> and parse it as a [`City`](@ref).
 """
 function read_data()
-    rootpath = artifact"paris_54000"
-    lines = open(joinpath(rootpath, "bin", "paris_54000.txt")) do file
+    rootpath = artifact"HashCode2014Data"
+    lines = open(joinpath(rootpath, "HashCode2014Data-0.1", "paris_54000.txt")) do file
         readlines(file)
     end
     N, M, T, C, S = map(s -> parse(Int, s), split(lines[1]))

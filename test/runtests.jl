@@ -5,4 +5,5 @@ using Test
     city = read_data()
     @test city.N == length(city.junctions)
     @test city.M == length(city.streets)
+    @test city.T == 54000
 end
