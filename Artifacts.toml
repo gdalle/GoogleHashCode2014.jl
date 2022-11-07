@@ -1,0 +1,6 @@
+[paris_54000]
+git-tree-sha1 = "c393cd3e31f4503ec8f7f1db36f75ece1ee2d1ba"
+
+    [[paris_54000.download]]
+    sha256 = "b372c0559e866b325997a5c7c353483a728c452b1364d7956261f9672d8027ad"
+    url = "https://github.com/gdalle/HashCode2014Data/raw/main/paris_54000.tar.gz"
