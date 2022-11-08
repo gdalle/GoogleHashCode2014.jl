@@ -4,12 +4,12 @@
 Store a city junction.
 
 # Fields
-- `i::Int`: junction index
-- `lat::Float64`: latitude
-- `long::Float64`: longitude
+- `index::Int`: junction index
+- `latitude::Float64`: latitude (in decimal degrees)
+- `longitude::Float64`: longitude (in decimal degrees)
 """
 Base.@kwdef struct Junction
-    i::Int
-    lat::Float64
-    long::Float64
+    index::Int
+    latitude::Float64
+    longitude::Float64
 end

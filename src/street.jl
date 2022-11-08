@@ -4,18 +4,18 @@
 Store an edge between two [`Junction`](@ref)s.
 
 # Fields
-- `j::Int`: street index
-- `A::Int`: index of the first junction
-- `B::Int`: index of the second junction
-- `D::Int`: direction, `1` for one-directional (`A -> B` only) and `2` for bi-directional
-- `C::Int`: time cost of traversing the street (in seconds)
-- `L::Int`: length of the street (in meters)
+- `index::Int`: street index
+- `endpointA::Int`: index of the first junction
+- `endpointB::Int`: index of the second junction
+- `bidirectional::Bool`: whether `B -> A` is allowed
+- `time::Int`: time cost of traversing the street (in seconds)
+- `length::Int`: length of the street (in meters)
 """
 Base.@kwdef struct Street
-    j::Int
-    A::Int
-    B::Int
-    D::Int
-    C::Int
-    L::Int
+    index::Int
+    endpointA::Int
+    endpointB::Int
+    bidirectional::Bool
+    time::Int
+    length::Int
 end

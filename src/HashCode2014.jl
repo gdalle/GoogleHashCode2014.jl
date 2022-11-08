@@ -15,10 +15,12 @@ export Junction
 export Street
 export City, read_city, write_city
 export Solution, read_solution, write_solution
+export is_feasible, total_length
 
 include("junction.jl")
 include("street.jl")
 include("city.jl")
 include("solution.jl")
+include("eval.jl")
 
 end
