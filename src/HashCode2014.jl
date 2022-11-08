@@ -15,7 +15,7 @@ export Junction
 export Street
 export City, read_city, write_city
 export Solution, read_solution, write_solution
-export is_feasible, total_length
+export is_feasible, total_distance
 
 include("junction.jl")
 include("street.jl")

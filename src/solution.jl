@@ -1,18 +1,13 @@
+"""
+    Solution
+
+Store a set of itineraries, one for each car.
+
+# Fields
+- `itineraries::Vector{Vector{Int}}`: each itinerary is a vector of junction indices
+"""
 Base.@kwdef struct Solution
     itineraries::Vector{Vector{Int}}
-end
-
-function Base.string(solution::Solution)
-    C = length(solution.itineraries)
-    s = string(C) * "\n"
-    for itinerary in solution.itineraries
-        V = length(itinerary)
-        s *= string(V) * "\n"
-        for i in itinerary
-            s *= string(i - 1) * "\n"
-        end
-    end
-    return chop(s; tail=1)
 end
 
 function Solution(solution_string::AbstractString)
@@ -25,13 +20,25 @@ function Solution(solution_string::AbstractString)
         itinerary = Vector{Int}(undef, V)
         for v in 1:V
             i = parse(Int, lines[k + v])
-            i += 1
-            itinerary[v] = i
+            itinerary[v] = i + 1
         end
         itineraries[c] = itinerary
         k += V + 1
     end
     return Solution(; itineraries)
+end
+
+function Base.string(solution::Solution)
+    C = length(solution.itineraries)
+    s = "$C\n"
+    for itinerary in solution.itineraries
+        V = length(itinerary)
+        s *= "$V\n"
+        for i in itinerary
+            s *= "$(i-1)\n"
+        end
+    end
+    return chop(s; tail=1)
 end
 
 """

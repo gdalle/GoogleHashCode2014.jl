@@ -4,14 +4,14 @@
 Store a city made of [`Junction`](@ref)s and [`Street`](@ref)s, along with additional instance parameters.
 
 # Fields
-- `total_time::Int`: total time allotted for the car itineraries (in seconds)
+- `total_duration::Int`: total time allotted for the car itineraries (in seconds)
 - `nb_cars::Int`: number of cars in the fleet
 - `starting_junction::Int`: junction at which all the cars are located initially
 - `junctions::Vector{Junction}`: list of junctions
 - `streets::Vector{Street}`: list of streets
 """
 Base.@kwdef struct City
-    total_time::Int
+    total_duration::Int
     nb_cars::Int
     starting_junction::Int
     junctions::Vector{Junction}
@@ -35,18 +35,31 @@ function City(city_string::AbstractString)
             endpointA=Aⱼ + 1,
             endpointB=Bⱼ + 1,
             bidirectional=Dⱼ == 2,
-            time=Cⱼ,
-            length=Lⱼ,
+            duration=Cⱼ,
+            distance=Lⱼ,
         )
     end
     city = City(;
-        total_time=T,
+        total_duration=T,
         nb_cars=C,
         starting_junction=S + 1,
         junctions=junctions,
         streets=streets,
     )
     return city
+end
+
+function Base.string(city::City)
+    N, M = length(city.junctions), length(city.streets)
+    T, C, S = city.total_duration, city.nb_cars, city.starting_junction - 1
+    s = "$N $M $T $C $S\n"
+    for junction in city.junctions
+        s *= string(junction) * "\n"
+    end
+    for street in city.streets
+        s *= string(street) * "\n"
+    end
+    return chop(s; tail=1)
 end
 
 """

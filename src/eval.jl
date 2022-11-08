@@ -1,3 +1,28 @@
+"""
+    is_street(i, j, street)
+
+Check if the trip from junction `i` to junction `j` corresponds to a valid direction of `street`.
+"""
+function is_street(i::Integer, j::Integer, street::Street)
+    if (i, j) == (street.endpointA, street.endpointB)
+        return true
+    elseif (street.bidirectional && (i, j) == (street.endpointB, street.endpointA))
+        return true
+    else
+        return false
+    end
+end
+
+"""
+    is_feasible(solution, city[; verbose=false])
+
+Check if `solution` satisfies the constraints for the instance defined by `city`.
+The following criteria are considered (taken from the problem statement):
+- the number of itineraries has to match the number of cars of `city`
+- the first junction of each itinerary has to be the starting junction of `city`
+- for each consecutive pair of junctions on an itinerary, a street connecting these junctions has to exist in `city` (if the street is one directional, it has to be traversed in the correct direction)
+- the duration of each itinerary has to be lower or equal to the total duration of `city`
+"""
 function is_feasible(solution::Solution, city::City; verbose=false)
     nb_cars = length(solution.itineraries)
     if nb_cars != city.nb_cars
@@ -10,19 +35,14 @@ function is_feasible(solution::Solution, city::City; verbose=false)
                 return false
             else
                 V = length(itinerary)
-                time = 0
+                duration = 0
                 for v in 1:(V - 1)
                     i, j = itinerary[v], itinerary[v + 1]
                     exists = false
                     for street in city.streets
-                        if (
-                            ((i, j) == (street.endpointA, street.endpointB)) || (
-                                street.bidirectional &&
-                                (i, j) == (street.endpointB, street.endpointA)
-                            )
-                        )
+                        if is_street(i, j, street)
                             exists = true
-                            time += street.time
+                            duration += street.duration
                             break
                         end
                     end
@@ -31,8 +51,9 @@ function is_feasible(solution::Solution, city::City; verbose=false)
                         return false
                     end
                 end
-                if time > city.total_time
-                    verbose && @warn "Itinerary $c has duration $time > $(city.total_time)"
+                if duration > city.total_duration
+                    verbose &&
+                        @warn "Itinerary $c has duration $duration > $(city.total_duration)"
                     return false
                 end
             end
@@ -41,20 +62,20 @@ function is_feasible(solution::Solution, city::City; verbose=false)
     return true
 end
 
-function total_length(solution::Solution, city::City)
+"""
+    total_distance(solution, city)
+
+Compute the total distance of all itineraries in `solution` based on the street data from `city`.
+"""
+function total_distance(solution::Solution, city::City)
     L = 0
     for itinerary in solution.itineraries
         V = length(itinerary)
         for v in 1:(V - 1)
             i, j = itinerary[v], itinerary[v + 1]
             for street in city.streets
-                if (
-                    ((i, j) == (street.endpointA, street.endpointB)) || (
-                        street.bidirectional &&
-                        (i, j) == (street.endpointB, street.endpointA)
-                    )
-                )
-                    L += street.length
+                if is_street(i, j, street)
+                    L += street.distance
                     break
                 end
             end
