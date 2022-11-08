@@ -25,13 +25,12 @@ function City(city_string::AbstractString)
     junctions = Vector{Junction}(undef, N)
     for i in 1:N
         latᵢ, longᵢ = map(s -> parse(Float64, s), split(lines[1 + i]))
-        junctions[i] = Junction(; index=i, latitude=latᵢ, longitude=longᵢ)
+        junctions[i] = Junction(; latitude=latᵢ, longitude=longᵢ)
     end
     streets = Vector{Street}(undef, M)
     for j in 1:M
         Aⱼ, Bⱼ, Dⱼ, Cⱼ, Lⱼ = map(s -> parse(Int, s), split(lines[1 + N + j]))
         streets[j] = Street(;
-            index=j,
             endpointA=Aⱼ + 1,
             endpointB=Bⱼ + 1,
             bidirectional=Dⱼ == 2,
@@ -88,4 +87,15 @@ function write_city(city::City, path)
     open(path, "w") do file
         write(file, city_string)
     end
+end
+
+"""
+    select_junctions(city, junction_indices)
+
+Return a subset of `city` by keeping only the junctions defined by `junction_indices`.
+
+Beware, the junction indices will change.
+"""
+function select_junctions(city::City, junction_indices)
+    return error("not implemented yet")
 end

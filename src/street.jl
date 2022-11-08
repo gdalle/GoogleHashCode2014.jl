@@ -4,7 +4,6 @@
 Store an edge between two [`Junction`](@ref)s.
 
 # Fields
-- `index::Int`: street index
 - `endpointA::Int`: index of the first junction
 - `endpointB::Int`: index of the second junction
 - `bidirectional::Bool`: whether `B -> A` is allowed
@@ -12,7 +11,6 @@ Store an edge between two [`Junction`](@ref)s.
 - `distance::Int`: length of the street (in meters)
 """
 Base.@kwdef struct Street
-    index::Int
     endpointA::Int
     endpointB::Int
     bidirectional::Bool
