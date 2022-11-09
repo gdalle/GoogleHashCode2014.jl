@@ -34,9 +34,8 @@ function is_feasible(solution::Solution, city::City; verbose=false)
                 verbose && @warn "Itinerary $c has invalid starting junction"
                 return false
             else
-                V = length(itinerary)
                 duration = 0
-                for v in 1:(V - 1)
+                for v in 1:(length(itinerary) - 1)
                     i, j = itinerary[v], itinerary[v + 1]
                     exists = false
                     for street in city.streets
@@ -69,15 +68,19 @@ Compute the total distance of all itineraries in `solution` based on the street 
 """
 function total_distance(solution::Solution, city::City)
     L = 0
-    for itinerary in solution.itineraries
-        V = length(itinerary)
-        for v in 1:(V - 1)
-            i, j = itinerary[v], itinerary[v + 1]
-            for street in city.streets
+    for street in city.streets
+        visited = false
+        for itinerary in solution.itineraries
+            for v in 1:(length(itinerary) - 1)
+                i, j = itinerary[v], itinerary[v + 1]
                 if is_street(i, j, street)
                     L += street.distance
+                    visited = true
                     break
                 end
+            end
+            if visited
+                break
             end
         end
     end
