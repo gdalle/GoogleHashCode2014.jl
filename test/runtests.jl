@@ -20,5 +20,7 @@ using Test
     @testset verbose = true "Large instance" begin
         city = read_city()
         @test city.total_duration == 54000
+        solution = greedy_algorithm(city)
+        @test is_feasible(solution, city)
     end
 end
