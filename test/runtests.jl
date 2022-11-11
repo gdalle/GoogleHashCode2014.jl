@@ -19,8 +19,14 @@ using Test
 
     @testset verbose = true "Large instance" begin
         city = read_city()
+        solution = random_walk(city)
         @test city.total_duration == 54000
-        solution = greedy_algorithm(city)
         @test is_feasible(solution, city)
+    end
+
+    @testset verbose = true "Plotting" begin
+        city = read_city()
+        solution = random_walk(city)
+        plot_streets(city, solution; path=nothing)
     end
 end

@@ -1,19 +1,4 @@
 """
-    is_street(i, j, street)
-
-Check if the trip from junction `i` to junction `j` corresponds to a valid direction of `street`.
-"""
-function is_street(i::Integer, j::Integer, street::Street)
-    if (i, j) == (street.endpointA, street.endpointB)
-        return true
-    elseif (street.bidirectional && (i, j) == (street.endpointB, street.endpointA))
-        return true
-    else
-        return false
-    end
-end
-
-"""
     is_feasible(solution, city[; verbose=false])
 
 Check if `solution` satisfies the constraints for the instance defined by `city`.
@@ -65,6 +50,7 @@ end
     total_distance(solution, city)
 
 Compute the total distance of all itineraries in `solution` based on the street data from `city`.
+Streets visited several times are only counted once.
 """
 function total_distance(solution::Solution, city::City)
     L = 0

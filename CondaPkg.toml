@@ -1,0 +1,3 @@
+
+[deps.folium]
+channel = "conda-forge"

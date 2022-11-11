@@ -88,14 +88,3 @@ function write_city(city::City, path)
         write(file, city_string)
     end
 end
-
-"""
-    select_junctions(city, junction_indices)
-
-Return a subset of `city` by keeping only the junctions defined by `junction_indices`.
-
-Beware, the junction indices will change.
-"""
-function select_junctions(city::City, junction_indices)
-    return error("not implemented yet")
-end
