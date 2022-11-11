@@ -39,6 +39,6 @@ function get_street_end(i::Integer, street::Street)
     elseif street.bidirectional && i == street.endpointB
         return street.endpointA
     else
-        return nothing
+        return 0
     end
 end

@@ -1,4 +1,4 @@
-# HashCode2014
+# HashCode2014.jl
 
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://gdalle.github.io/HashCode2014.jl/dev/)
 [![Build Status](https://github.com/gdalle/HashCode2014.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/gdalle/HashCode2014.jl/actions/workflows/CI.yml?query=branch%3Amain)

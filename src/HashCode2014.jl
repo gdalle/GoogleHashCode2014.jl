@@ -12,7 +12,6 @@ Made for MIT course C25: [_Julia: Solving Real-World Problems with Computation_]
 module HashCode2014
 
 using Artifacts
-using ProgressLogging
 using PythonCall
 
 export Junction

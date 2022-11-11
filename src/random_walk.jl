@@ -1,7 +1,7 @@
 function random_walk(city::City)
     (; total_duration, nb_cars, starting_junction, streets) = city
     itineraries = Vector{Vector{Int}}(undef, nb_cars)
-    @progress "Random walk" for c in 1:nb_cars
+    for c in 1:nb_cars
         itinerary = [starting_junction]
         duration = 0
         while true

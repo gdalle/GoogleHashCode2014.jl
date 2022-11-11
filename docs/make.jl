@@ -14,7 +14,7 @@ makedocs(;
         edit_link="main",
         assets=String[],
     ),
-    pages=["Home" => "index.md"],
+    pages=["Home" => "index.md", "API reference" => "api.md"],
 )
 
 deploydocs(; repo="github.com/gdalle/HashCode2014.jl", devbranch="main")

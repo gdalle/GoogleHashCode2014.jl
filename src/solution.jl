@@ -25,7 +25,7 @@ function Solution(solution_string::AbstractString)
         itineraries[c] = itinerary
         k += V + 1
     end
-    return Solution(; itineraries)
+    return Solution(; itineraries=itineraries)
 end
 
 function Base.string(solution::Solution)

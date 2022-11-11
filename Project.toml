@@ -5,13 +5,9 @@ version = "0.1.0"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
-CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
-ProgressLogging = "33c8b6b6-d38a-422a-b730-caa89a2f386c"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 
 [compat]
-CondaPkg = "0.2"
-ProgressLogging = "0.1"
 PythonCall = "0.9"
 julia = "1.8"
 
