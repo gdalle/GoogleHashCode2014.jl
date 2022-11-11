@@ -1,3 +1,4 @@
 
 [deps.folium]
 channel = "conda-forge"
+version = "0.13"
