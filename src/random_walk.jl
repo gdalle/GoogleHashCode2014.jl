@@ -1,4 +1,10 @@
-function random_walk(city::City)
+"""
+    random_walk(rng, city)
+    random_walk(city)
+
+Create a solution from a [`City`](@ref) by letting each car follow a random walk from its starting point.
+"""
+function random_walk(rng::AbstractRNG, city::City)
     (; total_duration, nb_cars, starting_junction, streets) = city
     itineraries = Vector{Vector{Int}}(undef, nb_cars)
     for c in 1:nb_cars
@@ -15,7 +21,7 @@ function random_walk(city::City)
             if isempty(candidates)
                 break
             else
-                s, street = rand(candidates)
+                s, street = rand(rng, candidates)
                 next_junction = get_street_end(current_junction, street)
                 push!(itinerary, next_junction)
                 duration += street.duration
@@ -25,3 +31,5 @@ function random_walk(city::City)
     end
     return Solution(itineraries)
 end
+
+random_walk(city::City) = random_walk(default_rng(), city)

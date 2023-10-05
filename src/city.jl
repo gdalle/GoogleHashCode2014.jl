@@ -10,12 +10,20 @@ Store a city made of [`Junction`](@ref)s and [`Street`](@ref)s, along with addit
 - `junctions::Vector{Junction}`: list of junctions
 - `streets::Vector{Street}`: list of streets
 """
-Base.@kwdef struct City
+@kwdef struct City
     total_duration::Int
     nb_cars::Int
     starting_junction::Int
     junctions::Vector{Junction}
     streets::Vector{Street}
+end
+
+function Base.show(io::IO, city::City)
+    (; total_duration, nb_cars, starting_junction, junctions, streets) = city
+    return print(
+        io,
+        "City with $(length(junctions)) junctions and $(length(streets)) streets, where $nb_cars cars must start from junction $starting_junction and travel for at most $total_duration seconds",
+    )
 end
 
 function City(city_string::AbstractString)
@@ -66,7 +74,7 @@ end
 
 Read and parse a [`City`](@ref) from a file located at `path`.
 
-The default path is an artifact containing the official challenge data.
+The default path is an artifact containing the official challenge data from <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt>.
 """
 function read_city(
     path=joinpath(artifact"HashCode2014Data", "HashCode2014Data-0.1", "paris_54000.txt")
@@ -87,4 +95,5 @@ function write_city(city::City, path)
     open(path, "w") do file
         write(file, city_string)
     end
+    return true
 end

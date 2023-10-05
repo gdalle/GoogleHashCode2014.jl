@@ -1,25 +1,31 @@
 using Aqua
 using Documenter
 using HashCode2014
+using JET
 using JuliaFormatter
+using PythonCall
 using Test
 
 DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursive=true)
 
 @testset verbose = true "HashCode2014.jl" begin
-    @testset verbose = true "Code quality (Aqua.jl)" begin
+    @testset "Code quality (Aqua.jl)" begin
         Aqua.test_all(HashCode2014; ambiguities=false)
     end
 
-    @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
-        @test format(HashCode2014; verbose=true, overwrite=false)
+    @testset "Code formatting (JuliaFormatter.jl)" begin
+        @test format(HashCode2014; verbose=false, overwrite=false)
     end
 
-    @testset verbose = true "Doctests (Documenter.jl)" begin
+    @testset "Code linting (JET.jl)" begin
+        JET.test_package(HashCode2014; target_defined_modules=true)
+    end
+
+    @testset "Doctests (Documenter.jl)" begin
         doctest(HashCode2014)
     end
 
-    @testset verbose = true "Small instance" begin
+    @testset "Small instance" begin
         input_path = joinpath(@__DIR__, "data", "example_input.txt")
         output_path = joinpath(@__DIR__, "data", "example_output.txt")
         city = read_city(input_path)
@@ -32,18 +38,20 @@ DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursiv
         end
         @test is_feasible(solution, city)
         @test total_distance(solution, city) == 450
+        @test write_city(city, joinpath(tempdir(), "city.txt"))
+        @test write_solution(solution, joinpath(tempdir(), "solution.txt"))
     end
 
-    @testset verbose = true "Large instance" begin
+    @testset "Large instance" begin
         city = read_city()
         solution = random_walk(city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
     end
 
-    @testset verbose = true "Plotting" begin
+    @testset "Plotting" begin
         city = read_city()
         solution = random_walk(city)
-        plot_streets(city, solution; path=nothing)
+        plot_streets(city, solution; path=joinpath(tempdir(), "solution.html"))
     end
 end
