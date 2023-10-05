@@ -84,6 +84,7 @@ function HashCode2014.plot_streets(
     if path !== nothing
         m.save(path)
     end
+
     return m
 end
 

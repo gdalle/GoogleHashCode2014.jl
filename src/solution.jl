@@ -6,8 +6,16 @@ Store a set of itineraries, one for each car.
 # Fields
 - `itineraries::Vector{Vector{Int}}`: each itinerary is a vector of junction indices
 """
-Base.@kwdef struct Solution
+@kwdef struct Solution
     itineraries::Vector{Vector{Int}}
+end
+
+function Base.show(io::IO, solution::Solution)
+    (; itineraries) = solution
+    return print(
+        io,
+        "Solution with $(length(itineraries)) itineraries of lengths $(length.(itineraries))",
+    )
 end
 
 function Solution(solution_string::AbstractString)
@@ -63,4 +71,5 @@ function write_solution(solution::Solution, path)
     open(path, "w") do file
         write(file, solution_string)
     end
+    return true
 end

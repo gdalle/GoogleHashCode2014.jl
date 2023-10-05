@@ -18,6 +18,15 @@ Base.@kwdef struct Street
     distance::Int
 end
 
+function Base.show(io::IO, street::Street)
+    (; endpointA, endpointB, bidirectional, duration, distance) = street
+    direction_descriptor = bidirectional ? "Bidirectional" : "Monodirectional"
+    return print(
+        io,
+        "$direction_descriptor street between junctions $endpointA and $endpointB, with duration $duration seconds and distance $distance meters",
+    )
+end
+
 function Base.string(street::Street)
     (; endpointA, endpointB, bidirectional, duration, distance) = street
     return "$(endpointA-1) $(endpointB-1) $(1 + bidirectional) $duration $distance"

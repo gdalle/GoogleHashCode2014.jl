@@ -3,7 +3,11 @@ using Documenter
 
 DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursive=true)
 
-cp(joinpath(dirname(@__DIR__), "README.md"), joinpath("src", "index.md"); force=true)
+cp(
+    joinpath(dirname(@__DIR__), "README.md"),
+    joinpath(@__DIR__, "src", "index.md");
+    force=true,
+)
 
 makedocs(;
     modules=[HashCode2014],

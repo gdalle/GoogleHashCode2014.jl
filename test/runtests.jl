@@ -38,6 +38,8 @@ DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursiv
         end
         @test is_feasible(solution, city)
         @test total_distance(solution, city) == 450
+        @test write_city(city, joinpath(tempdir(), "city.txt"))
+        @test write_solution(solution, joinpath(tempdir(), "solution.txt"))
     end
 
     @testset "Large instance" begin
@@ -50,6 +52,6 @@ DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursiv
     @testset "Plotting" begin
         city = read_city()
         solution = random_walk(city)
-        plot_streets(city, solution; path=nothing)
+        plot_streets(city, solution; path=joinpath(tempdir(), "solution.html"))
     end
 end
