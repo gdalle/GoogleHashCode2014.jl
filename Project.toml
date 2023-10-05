@@ -1,18 +1,28 @@
 name = "HashCode2014"
 uuid = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
-authors = ["Guillaume Dalle <22795598+gdalle@users.noreply.github.com> and contributors"]
-version = "0.1.0"
+authors = ["Guillaume Dalle"]
+version = "0.1.1"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+
+[weakdeps]
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
+
+[extensions]
+HashCode2014PythonCallExt = "PythonCall"
 
 [compat]
 PythonCall = "0.9"
-julia = "1.8"
+julia = "1.9"
 
 [extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
+JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
+PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Aqua", "Documenter", "JET", "JuliaFormatter", "PythonCall", "Test"]

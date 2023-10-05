@@ -3,18 +3,17 @@ using Documenter
 
 DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursive=true)
 
+cp(joinpath(dirname(@__DIR__), "README.md"), joinpath("src", "index.md"); force=true)
+
 makedocs(;
     modules=[HashCode2014],
-    authors="Guillaume Dalle <22795598+gdalle@users.noreply.github.com> and contributors",
-    repo="https://github.com/gdalle/HashCode2014.jl/blob/{commit}{path}#{line}",
+    authors="Guillaume Dalle",
     sitename="HashCode2014.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://gdalle.github.io/HashCode2014.jl",
-        edit_link="main",
-        assets=String[],
     ),
-    pages=["Home" => "index.md", "API reference" => "api.md"],
+    pages=["Home" => "index.md", "Tutorial" => "tutorial.md", "API reference" => "api.md"],
 )
 
-deploydocs(; repo="github.com/gdalle/HashCode2014.jl", devbranch="main")
+deploydocs(; repo="github.com/gdalle/HashCode2014.jl", devbranch="main", push_preview=true)

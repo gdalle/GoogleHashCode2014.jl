@@ -1,7 +1,11 @@
+.vscode
 *.jl.*.cov
 *.jl.cov
 *.jl.mem
 /Manifest.toml
 /docs/build/
-.CondaPkg/
+/docs/src/index.md
+/docs/Manifest.toml
 *.html
+.CondaPkg/
+*.profraw

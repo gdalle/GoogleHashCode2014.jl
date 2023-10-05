@@ -12,7 +12,6 @@ Made for MIT course C25: [_Julia: Solving Real-World Problems with Computation_]
 module HashCode2014
 
 using Artifacts
-using PythonCall
 
 export Junction
 export Street
@@ -29,6 +28,14 @@ include("solution.jl")
 include("eval.jl")
 include("utils.jl")
 include("random_walk.jl")
-include("plot.jl")
+
+"""
+    plot_streets(city, solution=nothing; path=nothing)
+
+Plot a [`City`](@ref) and an optional [`Solution`](@ref) using the Python library [folium](https://python-visualization.github.io/folium/), save the result as an HTML file at `path`
+
+This method is defined in a package extension and requires PythonCall.jl to be loaded.
+"""
+function plot_streets end
 
 end
