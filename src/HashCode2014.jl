@@ -10,7 +10,7 @@ using Random: AbstractRNG, default_rng
 
 export Junction
 export Street
-export City, read_city, write_city
+export City, read_city, write_city, change_duration
 export Solution, read_solution, write_solution
 export is_feasible, total_distance
 export random_walk

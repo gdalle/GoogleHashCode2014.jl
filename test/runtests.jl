@@ -47,6 +47,8 @@ DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursiv
         solution = random_walk(city)
         @test city.total_duration == 54000
         @test is_feasible(solution, city)
+        city_shorter = change_duration(city, 18000)
+        @test city_shorter.total_duration == 18000
     end
 
     @testset "Plotting" begin

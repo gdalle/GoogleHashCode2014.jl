@@ -97,3 +97,19 @@ function write_city(city::City, path)
     end
     return true
 end
+
+"""
+    change_duration(city, total_duration)
+
+Create a new [`City`](@ref) with a different `total_duration` and everything else equal.
+"""
+function change_duration(city::City, total_duration)
+    new_city = City(;
+        total_duration=total_duration,
+        nb_cars=city.nb_cars,
+        starting_junction=city.starting_junction,
+        junctions=copy(city.junctions),
+        streets=copy(city.streets),
+    )
+    return new_city
+end
