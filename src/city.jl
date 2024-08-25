@@ -77,7 +77,9 @@ Read and parse a [`City`](@ref) from a file located at `path`.
 The default path is an artifact containing the official challenge data from <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt>.
 """
 function read_city(
-    path=joinpath(artifact"HashCode2014Data", "HashCode2014Data-0.1", "paris_54000.txt")
+    path=joinpath(
+        artifact"GoogleHashCode2014Data", "GoogleHashCode2014Data-0.1", "paris_54000.txt"
+    ),
 )
     city_string = open(path, "r") do file
         read(file, String)
