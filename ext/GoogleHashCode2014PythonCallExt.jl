@@ -1,9 +1,9 @@
-module HashCode2014PythonCallExt
+module GoogleHashCode2014PythonCallExt
 
-using HashCode2014
+using GoogleHashCode2014
 using PythonCall
 
-function HashCode2014.plot_streets(
+function GoogleHashCode2014.plot_streets(
     city::City, solution::Union{Solution,Nothing}=nothing; path=nothing
 )
     folium = pyimport("folium")
