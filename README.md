@@ -12,6 +12,8 @@ Made for [MIT course C25](https://github.com/mitmath/JuliaComputation): _Julia: 
 - Challenge description: [hashcode2014_final_task.pdf](https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/hashcode2014_final_task.pdf)
 - Challenge data: [paris_54000.txt](https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt)
 
-> "Given a description of city streets and a number of Street View cars available for a period of time, your
+> Given a description of city streets and a number of Street View cars available for a period of time, your
 > task is to schedule the movement of the cars to maximize the total length of city streets that were
-> traversed at least once."
+> traversed at least once.
+
+Note that this package used to be called HashCode2014.jl.
