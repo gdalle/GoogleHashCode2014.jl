@@ -1,9 +1,9 @@
 """
-    HashCode2014
+    GoogleHashCode2014
 
 Lightweight package designed to interact with the data of the 2014 Google Hash Code.
 """
-module HashCode2014
+module GoogleHashCode2014
 
 using Artifacts: @artifact_str
 using Random: AbstractRNG, default_rng

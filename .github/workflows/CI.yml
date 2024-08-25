@@ -53,6 +53,6 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using HashCode2014
-            DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursive=true)
-            doctest(HashCode2014)'
+            using GoogleHashCode2014
+            DocMeta.setdocmeta!(GoogleHashCode2014, :DocTestSetup, :(using GoogleHashCode2014); recursive=true)
+            doctest(GoogleHashCode2014)'

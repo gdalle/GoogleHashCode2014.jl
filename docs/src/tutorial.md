@@ -7,7 +7,7 @@ You need to install it from the GitHub repo with
 
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/gdalle/HashCode2014.jl")
+Pkg.add(url="https://github.com/gdalle/GoogleHashCode2014.jl")
 ```
 
 ## Instance and solutions
@@ -16,7 +16,7 @@ A problem instance is encoded in an object of type [`City`](@ref).
 You can create one for the setting of the challenge (the streets of Paris) as follows:
 
 ```jldoctest tuto
-julia> using HashCode2014
+julia> using GoogleHashCode2014
 
 julia> city = read_city()
 City with 11348 junctions and 17958 streets, where 8 cars must start from junction 4517 and travel for at most 54000 seconds

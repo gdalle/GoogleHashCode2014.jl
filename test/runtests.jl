@@ -1,28 +1,30 @@
 using Aqua
 using Documenter
-using HashCode2014
+using GoogleHashCode2014
 using JET
 using JuliaFormatter
 using PythonCall
 using Test
 
-DocMeta.setdocmeta!(HashCode2014, :DocTestSetup, :(using HashCode2014); recursive=true)
+DocMeta.setdocmeta!(
+    GoogleHashCode2014, :DocTestSetup, :(using GoogleHashCode2014); recursive=true
+)
 
-@testset verbose = true "HashCode2014.jl" begin
+@testset verbose = true "GoogleHashCode2014.jl" begin
     @testset "Code quality (Aqua.jl)" begin
-        Aqua.test_all(HashCode2014; ambiguities=false)
+        Aqua.test_all(GoogleHashCode2014; ambiguities=false)
     end
 
     @testset "Code formatting (JuliaFormatter.jl)" begin
-        @test format(HashCode2014; verbose=false, overwrite=false)
+        @test format(GoogleHashCode2014; verbose=false, overwrite=false)
     end
 
     @testset "Code linting (JET.jl)" begin
-        JET.test_package(HashCode2014; target_defined_modules=true)
+        JET.test_package(GoogleHashCode2014; target_defined_modules=true)
     end
 
     @testset "Doctests (Documenter.jl)" begin
-        doctest(HashCode2014)
+        doctest(GoogleHashCode2014)
     end
 
     @testset "Small instance" begin

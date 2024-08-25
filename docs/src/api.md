@@ -3,7 +3,7 @@
 ## Docstrings
 
 ```@autodocs
-Modules = [HashCode2014]
+Modules = [GoogleHashCode2014]
 ```
 
 ## Index
