@@ -2,12 +2,11 @@
 
 ## Getting started
 
-This package is not registered.
-You need to install it from the GitHub repo with
+To install this package, just run
 
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/gdalle/GoogleHashCode2014.jl")
+Pkg.add("GoogleHashCode2014")
 ```
 
 ## Instance and solutions
