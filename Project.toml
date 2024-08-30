@@ -20,7 +20,7 @@ Documenter = "1.6"
 JET = "0.9.8"
 JuliaFormatter = "1.0.60"
 PythonCall = "0.9.23"
-Random = "1.10"
+Random = "1"
 Test = "1"
 julia = "1.10"
 
