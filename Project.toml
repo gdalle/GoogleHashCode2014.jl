@@ -15,7 +15,7 @@ GoogleHashCode2014PythonCallExt = "PythonCall"
 
 [compat]
 Aqua = "0.8.7"
-Artifacts = "1.10"
+Artifacts = "1.10, 1"
 Documenter = "1.6"
 JET = "0.9.8"
 JuliaFormatter = "1.0.60"
