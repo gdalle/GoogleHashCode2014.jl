@@ -12,7 +12,7 @@ export Junction
 export Street
 export City, read_city, write_city, change_duration
 export Solution, read_solution, write_solution
-export is_street
+export is_street, is_street_start, get_street_end
 export is_feasible, total_distance
 export random_walk
 export plot_streets

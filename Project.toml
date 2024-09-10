@@ -1,7 +1,7 @@
 name = "GoogleHashCode2014"
 uuid = "a405283a-0100-47ff-b2ed-5493eb4224b2"
 authors = ["Guillaume Dalle"]
-version = "0.2.2"
+version = "0.2.3"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
