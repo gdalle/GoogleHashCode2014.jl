@@ -24,8 +24,8 @@ Solution with 8 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366
 julia> length(solution.itineraries[2])  # number of junctions visited by car nb 2
 3277
 
-julia> itinerary = solution.itineraries[2]  # sequence of junction indices visited by car nb 2
-3277-element Vector{Int64}:
+julia> solution.itineraries[2][1:10]  # first 10 junction indices visited by car nb 2
+10-element Vector{Int64}:
   4517
   1033
   3656
@@ -36,18 +36,6 @@ julia> itinerary = solution.itineraries[2]  # sequence of junction indices visit
  10089
  10361
  10089
- 10361
-     ⋮
-   972
-  2495
-  5580
-  3305
-  5580
-  2495
-  9871
-  6178
-  9871
-  2495
 ```
 """
 @kwdef struct Solution
