@@ -19,31 +19,6 @@ julia> rng = Random.MersenneTwister(0);
 
 julia> solution = random_walk(rng, city)
 Solution with 8 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366, 3707]
-
-julia> itinerary = solution.itineraries[2]  # sequence of junction indices visited by car nb 2
-3277-element Vector{Int64}:
-  4517
-  1033
-  3656
-  7681
-   398
-  4680
- 10361
- 10089
- 10361
- 10089
- 10361
-     ⋮
-   972
-  2495
-  5580
-  3305
-  5580
-  2495
-  9871
-  6178
-  9871
-  2495
 ```
 """
 function random_walk(rng::AbstractRNG, city::City)

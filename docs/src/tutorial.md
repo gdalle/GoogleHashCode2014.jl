@@ -19,10 +19,10 @@ julia> using GoogleHashCode2014
 
 julia> city = read_city()
 City with 11348 junctions and 17958 streets.
-8 cars start from junction 4517 and travel for at most 54000s.
+8 cars all start from junction 4517 and travel for at most 54000s.
 
 julia> city.junctions[10]  # get the junction object corresponding to junction index 10
-Junction located at coordinates (48.872250900000004, 2.3124588)
+Junction at coordinates (48.872250900000004, 2.3124588)
 
 julia> city.streets[10]
 Bidirectional street between junction indices 6814 and 2728 - duration 13s, distance 187m

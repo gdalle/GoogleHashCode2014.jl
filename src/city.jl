@@ -50,7 +50,7 @@ function Base.show(io::IO, city::City)
     (; total_duration, nb_cars, starting_junction, junctions, streets) = city
     return print(
         io,
-        "City with $(length(junctions)) junctions and $(length(streets)) streets.\n$nb_cars cars start from junction $starting_junction and travel for at most $(total_duration)s.",
+        "City with $(length(junctions)) junctions and $(length(streets)) streets.\n$nb_cars cars all start from junction $starting_junction and travel for at most $(total_duration)s.",
     )
 end
 
@@ -139,11 +139,11 @@ julia> using GoogleHashCode2014
 
 julia> city = read_city()
 City with 11348 junctions and 17958 streets.
-8 cars all start from junction 4517 and travel for at most 54000 seconds.
+8 cars all start from junction 4517 and travel for at most 54000s.
 
 julia> change_duration(city, 3600)
 City with 11348 junctions and 17958 streets.
-8 cars start from junction 4517 and travel for at most 3600 seconds.
+8 cars all start from junction 4517 and travel for at most 3600s.
 ```
 """
 function change_duration(city::City, total_duration::Integer)
