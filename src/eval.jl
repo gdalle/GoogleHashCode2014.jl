@@ -1,22 +1,47 @@
 """
-    is_feasible(solution, city[; verbose=false])
+    is_feasible(solution::Solution, city::City; verbose::Bool=false)
 
 Check if `solution` satisfies the constraints for the instance defined by `city`.
+
 The following criteria are considered (taken from the problem statement):
 - the number of itineraries has to match the number of cars of `city`
 - the first junction of each itinerary has to be the starting junction of `city`
 - for each consecutive pair of junctions on an itinerary, a street connecting these junctions has to exist in `city` (if the street is one directional, it has to be traversed in the correct direction)
 - the duration of each itinerary has to be lower or equal to the total duration of `city`
+
+# Example
+
+```jldoctest
+julia> using GoogleHashCode2014, Random
+
+julia> city = read_city();
+
+julia> rng = Random.MersenneTwister(0);
+
+julia> solution = random_walk(rng, city)
+Solution with 8 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366, 3707]
+
+julia> is_feasible(solution, city; verbose=false)
+true
+
+julia> partial_solution = Solution(solution.itineraries[1:7])
+Solution with 7 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366]
+
+julia> is_feasible(partial_solution, city; verbose=false)
+false
+```
 """
-function is_feasible(solution::Solution, city::City; verbose=false)
-    nb_cars = length(solution.itineraries)
-    if nb_cars != city.nb_cars
-        verbose && @warn "Incoherent number of cars"
+function is_feasible(solution::Solution, city::City; verbose::Bool=false)
+    nb_itineraries = length(solution.itineraries)
+    if nb_itineraries != city.nb_cars
+        verbose &&
+            @warn "Incoherent number of itineraries $nb_itineraries (it should be equal to the number of cars $(city.nb_cars))."
         return false
     else
         for (c, itinerary) in enumerate(solution.itineraries)
-            if first(itinerary) != city.starting_junction
-                verbose && @warn "Itinerary $c has invalid starting junction"
+            j0 = first(itinerary)
+            if j0 != city.starting_junction
+                verbose && @warn "Itinerary $c has invalid starting junction index $j0."
                 return false
             else
                 duration = 0
@@ -31,13 +56,14 @@ function is_feasible(solution::Solution, city::City; verbose=false)
                         end
                     end
                     if !exists
-                        verbose && @warn "Street $i -> $j does not exist"
+                        verbose &&
+                            @warn "A street linking junction indices $i -> $j does not exist."
                         return false
                     end
                 end
                 if duration > city.total_duration
                     verbose &&
-                        @warn "Itinerary $c has duration $duration > $(city.total_duration)"
+                        @warn "Itinerary $c has duration $duration > $(city.total_duration) seconds."
                     return false
                 end
             end
@@ -47,10 +73,29 @@ function is_feasible(solution::Solution, city::City; verbose=false)
 end
 
 """
-    total_distance(solution, city)
+    total_distance(solution::Solution, city::City)
 
-Compute the total distance of all itineraries in `solution` based on the street data from `city`.
-Streets visited several times are only counted once.
+Compute the total distance traveled by all itineraries in `solution` based on the street data from `city`.
+
+!!! warning
+    Streets visited several times or in both directions are only counted once.
+
+# Example
+
+
+```jldoctest
+julia> using GoogleHashCode2014, Random
+
+julia> city = read_city();
+
+julia> rng = Random.MersenneTwister(0);
+
+julia> solution = random_walk(rng, city)
+Solution with 8 itineraries of lengths [3810, 3277, 3779, 3278, 3451, 3697, 4366, 3707]
+
+julia> total_distance(solution, city)
+752407
+```
 """
 function total_distance(solution::Solution, city::City)
     L = 0

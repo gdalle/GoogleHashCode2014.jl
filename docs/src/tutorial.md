@@ -18,13 +18,14 @@ You can create one for the setting of the challenge (the streets of Paris) as fo
 julia> using GoogleHashCode2014
 
 julia> city = read_city()
-City with 11348 junctions and 17958 streets, where 8 cars must start from junction 4517 and travel for at most 54000 seconds
+City with 11348 junctions and 17958 streets.
+8 cars start from junction 4517 and travel for at most 54000s.
 
-julia> city.junctions[1]
-Junction located at coordinates (48.8351503, 2.3077904)
+julia> city.junctions[10]  # get the junction object corresponding to junction index 10
+Junction located at coordinates (48.872250900000004, 2.3124588)
 
-julia> city.streets[1]
-Monodirectional street between junctions 8400 and 8402, with duration 4 seconds and distance 36 meters
+julia> city.streets[10]
+Bidirectional street between junction indices 6814 and 2728 - duration 13s, distance 187m
 ```
 
 A problem solution is encoded in an object of type [`Solution`](@ref).

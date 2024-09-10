@@ -4,7 +4,9 @@ using GoogleHashCode2014
 using PythonCall
 
 function GoogleHashCode2014.plot_streets(
-    city::City, solution::Union{Solution,Nothing}=nothing; path=nothing
+    city::City,
+    solution::Union{Solution,Nothing}=nothing;
+    path::Union{AbstractString,Nothing}=nothing,
 )
     folium = pyimport("folium")
 
