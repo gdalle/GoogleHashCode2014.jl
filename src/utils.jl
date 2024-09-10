@@ -47,9 +47,35 @@ function is_street(i::Integer, j::Integer, street::Street)
 end
 
 """
-    is_street_start(i, street)
+    is_street_start(i::Integer, street::Street)
 
-Check if junction `i` corresponds to a valid starting point of `street`.
+Check if junction index `i` is a valid starting point of `street`.
+
+# Example
+
+```jldoctest
+julia> using GoogleHashCode2014
+
+julia> city = read_city();
+
+julia> street = city.streets[10]
+Bidirectional street between junction indices 6814 and 2728 - duration 13s, distance 187m
+
+julia> is_street_start(6814, street)
+true
+
+julia> is_street_start(2728, street)
+true
+
+julia> street = city.streets[11]
+Monodirectional street from junction index 3779 to index 7853 - duration 12s, distance 88m
+
+julia> is_street_start(3779, street)
+true
+
+julia> is_street_start(7853, street)
+false
+```
 """
 function is_street_start(i::Integer, street::Street)
     if i == street.endpointA
@@ -62,9 +88,34 @@ function is_street_start(i::Integer, street::Street)
 end
 
 """
-    get_street_end(i, street)
+    get_street_end(i::Integer, street::Street)
 
-Retrieve the arrival endpoint of `street` when it starts at junction `i`.
+Retrieve the junction index at the other end `street` when it is crossed starting from junction index `i`.
+
+If `i` is not a valid starting point for `street`, an error is thrown.
+
+# Example
+
+```jldoctest
+julia> using GoogleHashCode2014
+
+julia> city = read_city();
+
+julia> street = city.streets[10]
+Bidirectional street between junction indices 6814 and 2728 - duration 13s, distance 187m
+
+julia> get_street_end(6814, street)
+2728
+
+julia> get_street_end(2728, street)
+6814
+
+julia> street = city.streets[11]
+Monodirectional street from junction index 3779 to index 7853 - duration 12s, distance 88m
+
+julia> get_street_end(3779, street)
+7853
+```
 """
 function get_street_end(i::Integer, street::Street)
     if i == street.endpointA
@@ -72,6 +123,6 @@ function get_street_end(i::Integer, street::Street)
     elseif street.bidirectional && i == street.endpointB
         return street.endpointA
     else
-        return 0
+        throw(ArgumentError("Invalid endpoint $i for $street"))
     end
 end
