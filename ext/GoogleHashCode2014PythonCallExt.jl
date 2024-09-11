@@ -7,6 +7,7 @@ function GoogleHashCode2014.plot_streets(
     city::City,
     solution::Union{Solution,Nothing}=nothing;
     path::Union{AbstractString,Nothing}=nothing,
+    zoom_start::Integer=12,
 )
     folium = pyimport("folium")
 
@@ -17,7 +18,9 @@ function GoogleHashCode2014.plot_streets(
     mean_longitude =
         sum(junction.longitude for junction in city.junctions) / length(city.junctions)
     m = folium.Map(;
-        tiles="OpenStreetMap", location=[mean_latitude, mean_longitude], zoom_start=12
+        tiles="OpenStreetMap",
+        location=[mean_latitude, mean_longitude],
+        zoom_start=zoom_start,
     )
 
     ## City layer
